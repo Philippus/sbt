@@ -1294,7 +1294,7 @@ object Classpaths {
     ivyConfigurations ++= Configurations.auxiliary,
     ivyConfigurations ++= { if (managedScalaInstance.value && scalaHome.value.isEmpty) Configurations.ScalaTool :: Nil else Nil },
     moduleSettings := moduleSettings0.value,
-    makePomConfiguration := new MakePomConfiguration(artifactPath in makePom value, projectInfo.value, None, pomExtra.value, pomPostProcess.value, pomIncludeRepository.value, pomAllRepositories.value),
+    makePomConfiguration := new MakePomConfiguration(artifactPath in makePom value, projectInfo.value, Some(Configurations.defaultMavenConfigurations), pomExtra.value, pomPostProcess.value, pomIncludeRepository.value, pomAllRepositories.value),
     deliverLocalConfiguration := deliverConfig(crossTarget.value, status = if (isSnapshot.value) "integration" else "release", logging = ivyLoggingLevel.value),
     deliverConfiguration := deliverLocalConfiguration.value,
     publishConfiguration := publishConfig(packagedArtifacts.in(publish).value, if (publishMavenStyle.value) None else Some(deliver.value), resolverName = getPublishTo(publishTo.value).name, checksums = checksums.in(publish).value, logging = ivyLoggingLevel.value, overwrite = isSnapshot.value),
